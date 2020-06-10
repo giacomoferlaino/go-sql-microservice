@@ -1,4 +1,4 @@
-package main
+package sqlmicroservice
 
 import (
 	"net/http"
