@@ -1,7 +1,6 @@
 {
-  "go.buildFlags": [
-    "-o",
-    "exec"
-  ],
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "go.testOnSave": true,
+  "go.buildFlags": ["-o", "exec"],
+  "go.testFlags": []
 }
