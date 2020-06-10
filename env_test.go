@@ -11,7 +11,7 @@ func lookupEnvMock(value string, ok bool) func(key string) (string, bool) {
 }
 
 var env Env = Env{
-	lookupEnv: lookupEnvMock("", false),
+	LookupEnv: lookupEnvMock("", false),
 }
 
 func TestLogging(t *testing.T) {
@@ -23,7 +23,7 @@ func TestLogging(t *testing.T) {
 	}
 
 	// should return false if the env variable exists and has value "false"
-	env.lookupEnv = lookupEnvMock("false", true)
+	env.LookupEnv = lookupEnvMock("false", true)
 	want = false
 	got = env.Logging()
 	if got != want {
@@ -31,7 +31,7 @@ func TestLogging(t *testing.T) {
 	}
 
 	// should return true if the variable existist and the value is not "false"
-	env.lookupEnv = lookupEnvMock("randomValue", true)
+	env.LookupEnv = lookupEnvMock("randomValue", true)
 	got = env.Logging()
 	want = true
 	if got != want {
