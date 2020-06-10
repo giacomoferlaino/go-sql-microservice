@@ -8,9 +8,9 @@ import (
 func main() {
 	app := NewApp()
 
-	app.router.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
+	app.Router.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprint(res, "Hello world!")
 	})
 
-	http.ListenAndServe(":8080", app.router)
+	http.ListenAndServe(":8080", app.Router)
 }

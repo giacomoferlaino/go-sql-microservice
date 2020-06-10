@@ -8,13 +8,13 @@ import (
 func NewApp() *App {
 	env := NewEnv()
 	return &App{
-		router:  http.NewServeMux(),
-		logging: env.Logging(),
+		Router:  http.NewServeMux(),
+		Logging: env.Logging(),
 	}
 }
 
 // App contains all the applications variables
 type App struct {
-	router  *http.ServeMux
-	logging bool
+	Router  *http.ServeMux
+	Logging bool
 }
