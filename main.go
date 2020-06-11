@@ -1,12 +1,14 @@
-package sqlmicroservice
+package main
 
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/giacomoferlaino/go-sql-microservice/sqlmicroservice"
 )
 
 func main() {
-	app := NewApp()
+	app := sqlmicroservice.NewApp()
 
 	app.Router.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprint(res, "Hello world!")
