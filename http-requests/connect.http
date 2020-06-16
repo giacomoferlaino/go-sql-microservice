@@ -1,0 +1,9 @@
+GET http://localhost:8080/connect HTTP/1.1
+
+###
+
+POST http://localhost:8080/connect HTTP/1.1
+
+###
+
+PATCH http://localhost:8080/connect HTTP/1.1
