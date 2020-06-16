@@ -1,7 +1,6 @@
 {
   "editor.formatOnSave": true,
   "go.testOnSave": true,
-  "go.buildFlags": ["-o", "exec"],
   "go.testFlags": [],
   "go.useLanguageServer": true
 }
