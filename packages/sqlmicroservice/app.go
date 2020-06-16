@@ -2,6 +2,8 @@ package sqlmicroservice
 
 import (
 	"net/http"
+
+	"github.com/giacomoferlaino/go-sql-microservice/packages/sqlmicroservice/httphandlers"
 )
 
 // NewApp allocates and return a new App
@@ -17,4 +19,9 @@ func NewApp() *App {
 type App struct {
 	Router  *http.ServeMux
 	Logging bool
+}
+
+// DefaultHandlers loads the default http handlers
+func (app App) DefaultHandlers() {
+	app.Router.HandleFunc("/connect", httphandlers.ConnectHandler)
 }
