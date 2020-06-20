@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/giacomoferlaino/go-sql-microservice/packages/sqlmicroservice"
 )
 
@@ -11,5 +12,5 @@ func main() {
 
 	app.DefaultHandlers()
 
-	http.ListenAndServe(":8080", app.Router)
+	http.ListenAndServe(":8080", app.Router())
 }
