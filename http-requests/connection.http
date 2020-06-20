@@ -1,0 +1,6 @@
+GET http://localhost:8080/connection HTTP/1.1
+
+###
+
+POST http://localhost:8080/connection HTTP/1.1
+
