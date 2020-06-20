@@ -3,25 +3,43 @@ package sqlmicroservice
 import (
 	"net/http"
 
-	"github.com/giacomoferlaino/go-sql-microservice/packages/sqlmicroservice/httphandlers"
+	"github.com/giacomoferlaino/go-sql-microservice/packages/database"
+	"github.com/giacomoferlaino/go-sql-microservice/packages/httphandlers"
 )
 
-// NewApp allocates and return a new App
+// NewApp allocates and return a new App.
 func NewApp() *App {
 	env := NewEnv()
 	return &App{
-		Router:  http.NewServeMux(),
-		Logging: env.Logging(),
+		databases: database.NewSyncMap(),
+		router:    http.NewServeMux(),
+		logging:   env.Logging(),
 	}
 }
 
-// App contains all the applications variables
+// App contains all the applications variables.
 type App struct {
-	Router  *http.ServeMux
-	Logging bool
+	databases *database.SyncMap
+	router    *http.ServeMux
+	logging   bool
 }
 
-// DefaultHandlers loads the default http handlers
-func (app App) DefaultHandlers() {
-	app.Router.HandleFunc("/connect", httphandlers.ConnectHandler)
+// Router gets the router property
+func (app *App) Router() *http.ServeMux {
+	return app.router
+}
+
+// Databases gets the databases property
+func (app *App) Databases() *database.SyncMap {
+	return app.databases
+}
+
+// Logging gets the logging property
+func (app *App) Logging() bool {
+	return app.logging
+}
+
+// DefaultHandlers loads the default http handlers.
+func (app *App) DefaultHandlers() {
+	app.router.Handle("/connection", httphandlers.NewConnectionHandler(app))
 }
