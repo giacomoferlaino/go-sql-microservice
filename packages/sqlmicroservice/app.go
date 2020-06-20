@@ -1,3 +1,4 @@
+// Package sqlmicroservice provides the global functionalities needed to run the microservice.
 package sqlmicroservice
 
 import (
