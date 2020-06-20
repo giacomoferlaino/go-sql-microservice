@@ -1,4 +1,4 @@
-package sqlmicroservice
+package database
 
 // NewSyncMapMock allocates and return a new syncMapMock
 func NewSyncMapMock() *SyncMapMock {
