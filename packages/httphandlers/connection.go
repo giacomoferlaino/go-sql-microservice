@@ -1,21 +1,24 @@
 package httphandlers
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 )
 
 // NewConnectionHandler allocates and returns a new ConnectionHandler.
-func NewConnectionHandler() *ConnectionHandler {
+func NewConnectionHandler(appState AppState) *ConnectionHandler {
 	return &ConnectionHandler{
-		write: fmt.Fprint,
+		appState: appState,
+		write:    fmt.Fprint,
 	}
 }
 
 // ConnectionHandler maganges the avaiable database connections.
 type ConnectionHandler struct {
-	write func(writer io.Writer, a ...interface{}) (length int, err error)
+	appState AppState
+	write    func(writer io.Writer, a ...interface{}) (length int, err error)
 }
 
 // ServeHTTP is the HTTP handler function for this handler.
@@ -29,5 +32,10 @@ func (h *ConnectionHandler) ServeHTTP(res http.ResponseWriter, req *http.Request
 }
 
 func (h *ConnectionHandler) get(res http.ResponseWriter, req *http.Request) {
-	h.write(res, "GET: Hello World")
+	bsData, err := json.Marshal(h.appState.Databases())
+	if err != nil {
+		h.write(res, "error")
+		return
+	}
+	h.write(res, string(bsData))
 }
