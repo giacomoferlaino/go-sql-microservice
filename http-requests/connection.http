@@ -3,4 +3,13 @@ GET http://localhost:8080/connection HTTP/1.1
 ###
 
 POST http://localhost:8080/connection HTTP/1.1
+Content-Type: application/json
 
+{
+  "name": "connection1",
+  "driver": "sqlserver",
+  "username": "sa",
+  "password": "password",
+  "host": "localhost",
+  "instance": "development"
+}
