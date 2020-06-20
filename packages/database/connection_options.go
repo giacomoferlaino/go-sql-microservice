@@ -4,18 +4,20 @@ import "net/url"
 
 // ConnectionOptions manages the connection parameters needed for an SQL connection string
 type ConnectionOptions struct {
-	driver   string
-	username string
-	password string
-	host     string
-	instance string
+	Name     string `json:"name"`
+	Driver   string `json:"driver"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Host     string `json:"host"`
+	Instance string `json:"instance"`
 }
 
-func (co *ConnectionOptions) connectionString() string {
+// ConnectionString creates an sql connection string
+func (co *ConnectionOptions) ConnectionString() string {
 	return (&url.URL{
-		Scheme: co.driver,
-		User:   url.UserPassword(co.username, co.password),
-		Host:   co.host,
-		Path:   co.instance,
+		Scheme: co.Driver,
+		User:   url.UserPassword(co.Username, co.Password),
+		Host:   co.Host,
+		Path:   co.Instance,
 	}).String()
 }
